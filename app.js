@@ -1,12 +1,14 @@
 //jshint esversion:6
-
+require('dotenv').config();
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _=require("lodash");
 const mongoose=require("mongoose");
 
-mongoose.connect("mongodb+srv://admin-dhruv:admin@cluster0.y2prv.mongodb.net/blogDB", {useNewUrlParser: true,useUnifiedTopology: true});
+const user=process.env.USERNAME;
+const pass=process.env.PASSWORD;
+mongoose.connect("mongodb+srv://"+user+":"+pass+"@cluster0.y2prv.mongodb.net/blogDB", {useNewUrlParser: true,useUnifiedTopology: true});
 
 const postSchema={
   title:String,
@@ -80,7 +82,12 @@ app.post("/compose", function(req, res) {
 
 
 })
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+}
 
-app.listen(3000, function() {
-  console.log("Server started on port 3000");
+
+app.listen(port, function() {
+  console.log("Server started");
 });
