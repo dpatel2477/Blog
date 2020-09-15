@@ -1,0 +1,18 @@
+<%- include("partials/header.ejs") -%>
+    <h1>Home</h1>
+    <p><%=homeIntro%></p>
+  <%  posts.forEach(function(post){ %>
+    <a href="posts/<%=post._id%>"><h1><%=post.title%></h1></a>
+
+    <p>
+    <%=post.body.substr(0,100) + "... "%>
+    <a href="delete/<%=post._id%>">Delete</a>
+    </p>
+
+
+
+  <%  });%>
+
+  </body>
+</html>
+<%- include("partials/footer.ejs") -%>
